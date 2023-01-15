@@ -1,1 +1,96 @@
+1 --> pip install django
+
+2 --> python -m django startproject mysite
+
+3 --> python .\manage.py runserver
+
+
+4 --> python .\manage.py startapp appname 
+
+5 --> add appname main project setting file INSTALLED_APPS 
+
+  --> create temlates file then create one same name folder and create any html file
+  --> for static file create file create static file create one file then create particular file
+  --> use file in html {% load static %}   <a href="{% static 'blog/a.png' %}" > clk </a>
+
+6 . Create templete out side the folder then write path in particuler templete in settings
+
+	##########   View folder in another folder ##########
+	from django.shortcuts import render
+	from django.http import HttpResponse
+
+	def Shophome(request):
+         # return HttpResponse("Hello shoppy Shophome")
+           return render(request,'shop/home.html')
+
+	########## View folder in main folder ###########
+
+	
+	from django.http import HttpResponse
+	from django.shortcuts import render
+
+
+	def Home(request):
+    		# txt = request.POST.get('text', 'default')
+    		# param = {'name': txt}
+    		return render(request, 'home.html')
+
+
+	def About(request):
+	     txt = request.POST.get('text', 'default')
+	     param={'name':txt}
+	     return render(request,'home.html',param)
+	    # return HttpResponse("Hello to my about freind")
+
+
+
+  #################### urls.py folder  ####################
+	from django.contrib import admin
+	from django.urls import path,include
+	from . import views
+
+	urlpatterns = [
+	    path('admin/', admin.site.urls),
+	    path('',views.Home,name='home'),
+	    path('about/',views.About,name='about'),
+	    path('shop/',include('shop.urls')),
+	    path('blog/',include('blog.urls')),
+	 ]
+
+
+
+################### Add sqlite3 in project ######################################
+
+	go to the model.py and write class inherite from Model
+
+	from django.db import models
+
+# Create your models here.
+
+class Prodect(models.Model):
+    product_id = models.AutoField
+    product_name = models.CharField(max_length=50)
+    product_desc = models.CharField(max_length=300)
+    pub_date = models.DateTimeField()
+    
+
+
+then go to the 
+
+apps.py and go to the setting and make change shop to the shop.apps.ShopConfig
+then 
+
+	python .\manage.py makemigrations
+	python .\manage.py migrate
+
+
+go to admin page and add the Product class
+
+
+from django.contrib import admin
+
+# Register your models here.
+from .models import Prodect
+
+admin.site.register(Prodect)
 
