@@ -95,3 +95,4 @@ from .models import Prodect
 admin.site.register(Prodect)
 
 # we can also use another database
+ 
