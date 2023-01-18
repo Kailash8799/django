@@ -30,7 +30,7 @@
 	from django.shortcuts import render
 
 
-	def Home(request):
+	def Home(request):  
     		# txt = request.POST.get('text', 'default')
     		# param = {'name': txt}
     		return render(request, 'home.html')
