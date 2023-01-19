@@ -82,7 +82,7 @@ then
 
 	python .\manage.py makemigrations
 	python .\manage.py migrate
-
+ 
 
 go to admin page and add the Product class
 
