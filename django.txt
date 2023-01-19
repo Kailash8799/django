@@ -6,7 +6,7 @@
 
 
 4 --> python .\manage.py startapp appname 
-
+ 
 5 --> add appname main project setting file INSTALLED_APPS 
 
   --> create temlates file then create one same name folder and create any html file
